@@ -36,6 +36,13 @@ public class MainController {
         model.addAttribute("center", "login");
         return "index";
     }
+    @RequestMapping("/logoutimpl")
+    public String logoutimpl(Model model, HttpSession session){
+        if(session != null){
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
     @RequestMapping("/register")
     public String register(Model model){
         model.addAttribute("center", "register");
@@ -57,8 +64,8 @@ public class MainController {
             throw new Exception("register error");
         }
         model.addAttribute("radm", adm);
-        model.addAttribute("center","registerok");
-        return "index";
+//        model.addAttribute("center","registerok");
+        return "redirect:/";
     }
     @RequestMapping("/loginimpl")
     public String loginimpl(Model model, String id, String pwd, HttpSession session) throws Exception {
